@@ -1,0 +1,8 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(copy \"C:\\\\Users\\\\Admin\\\\Desktop\\\\Logo.png\" \"C:\\\\Users\\\\Admin\\\\Desktop\\\\Projects\\\\incede.ai-web\\\\assets\\\\images\\\\incede-logo.png\")",
+      "Bash(dir \"C:\\\\Users\\\\Admin\\\\Desktop\\\\Projects\\\\incede.ai-web\\\\assets\\\\images\\\\\")"
+    ]
+  }
+}
