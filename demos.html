@@ -1,0 +1,307 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+<title>AI Agentic demos — Incede.ai prebuilt and custom AI agentic workflows</title>
+<meta name="description" content="See watsonx Orchestrate AI agentic workflows in action. Recorded walkthroughs and tailored live demos across HR, Sales, Procurement, Customer Support, IT, Productivity, and Document workflows — under enterprise-grade AI governance." />
+<meta name="theme-color" content="#5947BA" />
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="styles.css" />
+<style>
+  .demo-card {
+    background: #fff; border: 1px solid var(--line); border-radius: var(--radius);
+    overflow: hidden; transition: transform .15s, box-shadow .15s, border-color .15s;
+  }
+  .demo-card:hover { border-color: var(--brand-200); box-shadow: var(--shadow); transform: translateY(-2px); }
+  .demo-thumb {
+    aspect-ratio: 16/9;
+    background: linear-gradient(135deg, var(--brand-darker), var(--brand));
+    position: relative; display: flex; align-items: center; justify-content: center;
+    color: #fff;
+  }
+  .demo-thumb::before {
+    content: ""; position: absolute; inset: 0;
+    background: radial-gradient(circle at 30% 30%, rgba(255,107,53,0.25), transparent 60%);
+  }
+  .demo-thumb .play {
+    position: relative; z-index: 1;
+    width: 56px; height: 56px; border-radius: 50%;
+    background: rgba(255,255,255,0.18);
+    backdrop-filter: blur(8px);
+    display: flex; align-items: center; justify-content: center;
+    font-size: 22px;
+    transition: transform .2s;
+  }
+  .demo-card:hover .play { transform: scale(1.1); }
+  .demo-thumb .ic-label {
+    position: absolute; top: 14px; left: 14px;
+    background: rgba(255,255,255,0.15); backdrop-filter: blur(8px);
+    color: #fff; font-size: var(--fs-xs); font-weight: 600;
+    padding: 4px 10px; border-radius: 999px;
+    text-transform: uppercase; letter-spacing: 0.08em;
+  }
+  .demo-thumb .duration {
+    position: absolute; bottom: 14px; right: 14px;
+    background: rgba(15,11,34,0.7); color: #fff;
+    font-size: var(--fs-xs); font-weight: 600;
+    padding: 4px 10px; border-radius: 6px;
+  }
+  .demo-body { padding: 20px 24px 24px; }
+  .demo-body h3 { font-size: var(--fs-lg); margin-bottom: 6px; }
+  .demo-body p { font-size: var(--fs-sm); color: var(--ink-4); margin: 0 0 12px; }
+  .demo-integrations { display:flex; flex-wrap:wrap; gap: 6px; margin-bottom: 12px; }
+  .demo-integrations span { font-size: var(--fs-xs); background: var(--brand-50); color: var(--brand-dark); padding: 3px 8px; border-radius: 4px; font-weight: 500; }
+  .demo-actions { display:flex; gap: 8px; flex-wrap: wrap; }
+  .demo-actions .btn { padding: 8px 14px; font-size: var(--fs-xs); }
+</style>
+</head>
+<body>
+<a href="#main" class="skip-link">Skip to main content</a>
+
+<div class="topbar"><div class="container"><span class="topbar-tag">Certified IBM Partner · 10+ years · 500+ projects · 200+ customers</span><span class="topbar-meta"><a href="newsletter.html">Subscribe to The Brief →</a></span></div></div>
+
+<header class="nav">
+  <div class="container">
+    <a href="index.html" class="brand"><span class="brand-mark"></span><span><strong>incede</strong>.ai</span></a>
+    <nav class="nav-links">
+      <a href="quick-start.html">Services</a>
+      <a href="demos.html" class="active">AI Agentic demos</a>
+      <a href="case-studies.html">Customers</a>
+      <a href="industries.html">Industries</a>
+      <a href="events.html">Events</a>
+      <a href="blog.html">Resources</a>
+      <a href="about.html">Why Incede</a>
+      <a href="contact.html" class="btn btn-primary">Let's talk <span class="arr">→</span></a>
+    </nav>
+  </div>
+</header>
+
+<main id="main">
+
+<section class="page-hero">
+  <div class="container container-tight">
+    <div class="crumbs"><a href="index.html">Home</a><span class="sep">/</span>AI Agentic demos</div>
+    <span class="eyebrow">AI Agentic demos</span>
+    <h1>See watsonx Orchestrate agentic workflows at work.</h1>
+    <p class="lede">Watch recorded walkthroughs of real production agentic workflows we've shipped — or register for a <strong>tailored live demo</strong> built off your own systems, data, and workflow. Every demo runs under enterprise-grade AI governance.</p>
+    <div style="display:flex;gap:12px;margin-top:24px;flex-wrap:wrap;">
+      <a class="btn btn-primary btn-lg" href="#tailored">Request a tailored demo <span class="arr">→</span></a>
+      <a class="btn btn-secondary btn-lg" href="#library">Browse the demo library</a>
+    </div>
+  </div>
+</section>
+
+<!-- Two paths -->
+<section>
+  <div class="container container-tight">
+    <div class="grid-2">
+      <div class="card" style="border-left: 4px solid var(--brand);">
+        <span class="pill">Recorded</span>
+        <h3 style="margin-top:12px;">Watch a walkthrough</h3>
+        <p>5–8 minute recorded sessions of real production agents we've shipped — annotated with architecture and integration notes. No registration needed for the introductory walkthrough; register for full library access.</p>
+        <a class="btn btn-secondary" href="#library">Browse recordings →</a>
+      </div>
+      <div class="card" style="border-left: 4px solid var(--accent);">
+        <span class="pill" style="background:#fff8f0; color:var(--accent);">Tailored · best for evaluation</span>
+        <h3 style="margin-top:12px;">See it on your data</h3>
+        <p>A 30-minute live demo built off a sample of your workflow and systems. We'll show the agent triggered against your real data shape — not ours.</p>
+        <a class="btn btn-primary" href="#tailored">Request a tailored demo →</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Filter (visual only) -->
+<section id="library" style="background:var(--bg-alt);">
+  <div class="container">
+    <div class="section-head left" style="display:flex; justify-content:space-between; align-items:end; gap:24px; flex-wrap:wrap;">
+      <div>
+        <span class="eyebrow">Demo library</span>
+        <h2 class="mb-0">By agent type.</h2>
+      </div>
+      <div style="display:flex; gap:8px; flex-wrap:wrap;">
+        <span class="pill">All</span>
+        <span class="pill" style="background:transparent;border:1px solid var(--line);color:var(--ink-3);">HR</span>
+        <span class="pill" style="background:transparent;border:1px solid var(--line);color:var(--ink-3);">Sales</span>
+        <span class="pill" style="background:transparent;border:1px solid var(--line);color:var(--ink-3);">Procurement</span>
+        <span class="pill" style="background:transparent;border:1px solid var(--line);color:var(--ink-3);">Support</span>
+        <span class="pill" style="background:transparent;border:1px solid var(--line);color:var(--ink-3);">IT</span>
+        <span class="pill" style="background:transparent;border:1px solid var(--line);color:var(--ink-3);">Productivity</span>
+      </div>
+    </div>
+
+    <div class="grid-3">
+      <div class="demo-card">
+        <div class="demo-thumb"><span class="ic-label">HR</span><span class="duration">6:24</span><div class="play">▶</div></div>
+        <div class="demo-body">
+          <h3>Employee onboarding agent</h3>
+          <p>Day-1 setup across HRIS, IT, payroll, and Slack channels.</p>
+          <div class="demo-integrations"><span>Workday</span><span>SuccessFactors</span><span>Okta</span><span>Slack</span></div>
+          <div class="demo-actions"><a class="btn btn-primary" href="#tailored">Get demo</a><a class="btn btn-ghost" href="#">Watch</a></div>
+        </div>
+      </div>
+
+      <div class="demo-card">
+        <div class="demo-thumb" style="background:linear-gradient(135deg,#1a3a5f,#2563eb);"><span class="ic-label">Sales</span><span class="duration">5:18</span><div class="play">▶</div></div>
+        <div class="demo-body">
+          <h3>Lead-qualification sales agent</h3>
+          <p>Inbound lead enrichment, CRM hygiene, and seller prep brief.</p>
+          <div class="demo-integrations"><span>Salesforce</span><span>HubSpot</span><span>Seismic</span></div>
+          <div class="demo-actions"><a class="btn btn-primary" href="#tailored">Get demo</a><a class="btn btn-ghost" href="#">Watch</a></div>
+        </div>
+      </div>
+
+      <div class="demo-card">
+        <div class="demo-thumb" style="background:linear-gradient(135deg,#7c2d12,#FF6B35);"><span class="ic-label">Procurement</span><span class="duration">7:02</span><div class="play">▶</div></div>
+        <div class="demo-body">
+          <h3>PO & vendor management agent</h3>
+          <p>Sourcing workflow, PO creation, contract retrieval & summary.</p>
+          <div class="demo-integrations"><span>SAP Ariba</span><span>Coupa</span><span>Oracle</span></div>
+          <div class="demo-actions"><a class="btn btn-primary" href="#tailored">Get demo</a><a class="btn btn-ghost" href="#">Watch</a></div>
+        </div>
+      </div>
+
+      <div class="demo-card">
+        <div class="demo-thumb" style="background:linear-gradient(135deg,#0F62FE,#1a3a5f);"><span class="ic-label">Support</span><span class="duration">8:11</span><div class="play">▶</div></div>
+        <div class="demo-body">
+          <h3>Tier-1 customer support agent</h3>
+          <p>Inquiry triage, knowledge-base grounded responses, live-agent handoff on edge cases.</p>
+          <div class="demo-integrations"><span>Zendesk</span><span>Salesforce Service</span><span>Voice APIs</span></div>
+          <div class="demo-actions"><a class="btn btn-primary" href="#tailored">Get demo</a><a class="btn btn-ghost" href="#">Watch</a></div>
+        </div>
+      </div>
+
+      <div class="demo-card">
+        <div class="demo-thumb"><span class="ic-label">IT</span><span class="duration">5:42</span><div class="play">▶</div></div>
+        <div class="demo-body">
+          <h3>IT service desk agent</h3>
+          <p>Ticket triage, user provisioning, asset lookups — autonomous within scope.</p>
+          <div class="demo-integrations"><span>ServiceNow</span><span>Jira</span><span>Okta</span></div>
+          <div class="demo-actions"><a class="btn btn-primary" href="#tailored">Get demo</a><a class="btn btn-ghost" href="#">Watch</a></div>
+        </div>
+      </div>
+
+      <div class="demo-card">
+        <div class="demo-thumb" style="background:linear-gradient(135deg,#1a3a5f,#2563eb);"><span class="ic-label">Productivity</span><span class="duration">4:55</span><div class="play">▶</div></div>
+        <div class="demo-body">
+          <h3>Meeting & document productivity agent</h3>
+          <p>Scheduling, document handling, status updates — inside the tools your team already uses.</p>
+          <div class="demo-integrations"><span>Teams</span><span>Slack</span><span>Outlook</span><span>SharePoint</span><span>Google</span></div>
+          <div class="demo-actions"><a class="btn btn-primary" href="#tailored">Get demo</a><a class="btn btn-ghost" href="#">Watch</a></div>
+        </div>
+      </div>
+
+      <div class="demo-card">
+        <div class="demo-thumb" style="background:linear-gradient(135deg,#7c2d12,#FF6B35);"><span class="ic-label">Document</span><span class="duration">6:08</span><div class="play">▶</div></div>
+        <div class="demo-body">
+          <h3>Document & collaboration agent</h3>
+          <p>Advanced Box & SharePoint workflows — permissions, folder structure, comments — all via chat.</p>
+          <div class="demo-integrations"><span>Box</span><span>SharePoint</span><span>OneDrive</span></div>
+          <div class="demo-actions"><a class="btn btn-primary" href="#tailored">Get demo</a><a class="btn btn-ghost" href="#">Watch</a></div>
+        </div>
+      </div>
+
+      <div class="demo-card">
+        <div class="demo-thumb" style="background:linear-gradient(135deg,#0F62FE,#1a3a5f);"><span class="ic-label">Multi-agent</span><span class="duration">9:30</span><div class="play">▶</div></div>
+        <div class="demo-body">
+          <h3>Multi-agent workflow via MCP</h3>
+          <p>Multiple agents collaborating to complete an end-to-end process — the pattern we ship for our largest enterprises.</p>
+          <div class="demo-integrations"><span>watsonx Orchestrate</span><span>MCP</span><span>Granite</span></div>
+          <div class="demo-actions"><a class="btn btn-primary" href="#tailored">Get demo</a><a class="btn btn-ghost" href="#">Watch</a></div>
+        </div>
+      </div>
+
+      <div class="demo-card" style="background: var(--brand); color: #fff; border-color: var(--brand);">
+        <div class="demo-thumb" style="background:linear-gradient(135deg,#382B82,#5947BA);"><span class="ic-label">Custom</span><div class="play">✨</div></div>
+        <div class="demo-body">
+          <h3 style="color:#fff;">Custom agent for your workflow</h3>
+          <p style="color:rgba(255,255,255,0.85);">Don't see your use case? We co-build bespoke agents on watsonx Orchestrate. Let's scope it together.</p>
+          <a class="btn btn-accent" href="contact.html">Scope a custom agent →</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Tailored demo form -->
+<section id="tailored">
+  <div class="container container-tight">
+    <div class="split">
+      <div>
+        <span class="eyebrow">Tailored live demo</span>
+        <h2>See an agent run against your real workflow.</h2>
+        <p>30 minutes. We'll take a sample of your real data, build a working agent against your systems-of-record shape, and walk through it live with your team. No slide deck.</p>
+        <ul style="list-style:none;padding:0;margin:24px 0;">
+          <li style="padding:8px 0 8px 28px;position:relative;"><span style="position:absolute;left:0;color:var(--brand);font-weight:700;">✓</span> Built on your industry's data shape</li>
+          <li style="padding:8px 0 8px 28px;position:relative;"><span style="position:absolute;left:0;color:var(--brand);font-weight:700;">✓</span> Real integrations to the systems you use</li>
+          <li style="padding:8px 0 8px 28px;position:relative;"><span style="position:absolute;left:0;color:var(--brand);font-weight:700;">✓</span> Architecture walkthrough included</li>
+          <li style="padding:8px 0 8px 28px;position:relative;"><span style="position:absolute;left:0;color:var(--brand);font-weight:700;">✓</span> No-obligation; we'll tell you honestly if there's a better path</li>
+        </ul>
+      </div>
+      <aside class="form-card">
+        <h3 style="margin-top:0;">Request a tailored demo</h3>
+        <p class="muted" style="font-size:var(--fs-sm);">We'll reach out within 1 business day to scope the session.</p>
+        <form class="form-stack" onsubmit="event.preventDefault(); this.innerHTML='<p style=&quot;color:var(--success);font-weight:600;&quot;>Thanks — we&#39;ll be in touch within 1 business day to scope your demo.</p>';">
+          <div><label for="d-name">Name</label><input id="d-name" type="text" required /></div>
+          <div><label for="d-email">Work email</label><input id="d-email" type="email" required /></div>
+          <div><label for="d-co">Company</label><input id="d-co" type="text" required /></div>
+          <div><label for="d-type">Agent type of interest</label>
+            <select id="d-type">
+              <option>HR</option><option>Sales</option><option>Procurement</option>
+              <option>Customer Support</option><option>IT Service</option>
+              <option>Productivity</option><option>Document & Collaboration</option>
+              <option>Multi-agent</option><option>Custom / something else</option>
+            </select>
+          </div>
+          <div><label for="d-msg">Briefly, what would you like to see?</label><textarea id="d-msg" rows="3"></textarea></div>
+          <button type="submit" class="btn btn-primary btn-lg">Request tailored demo →</button>
+          <p class="privacy-note">By submitting, you agree to our <a href="#">privacy notice</a>. We never share your details.</p>
+        </form>
+      </aside>
+    </div>
+  </div>
+</section>
+
+<!-- Full library access registration -->
+<section style="background:var(--bg-alt);">
+  <div class="container container-tight">
+    <div class="newsletter-band">
+      <h2>Want full library access?</h2>
+      <p>Register once for access to all recorded walkthroughs, architecture notes, and engagement playbooks.</p>
+      <form class="newsletter-form" onsubmit="event.preventDefault(); this.querySelector('button').innerText='Access granted ✓';">
+        <input type="email" required placeholder="you@company.com" aria-label="Email address" />
+        <button class="btn btn-accent" type="submit">Register</button>
+      </form>
+      <small>Free. One-time registration. Unsubscribe anytime.</small>
+    </div>
+  </div>
+</section>
+
+</main>
+
+<section class="footer-cta">
+  <div class="container">
+    <h2>Software, services, and support — under one IBM partner.</h2>
+    <p>30 minutes with an engineer who's done this before.</p>
+    <a class="btn btn-accent btn-lg" href="contact.html">Let's talk →</a>
+  </div>
+</section>
+
+<footer class="footer">
+  <div class="container">
+    <div class="footer-grid">
+      <div><div class="brand"><span class="brand-mark"></span><span><strong style="color:#fff;">incede</strong>.ai</span></div><p style="color:#C5BEEA;max-width:280px;">Certified IBM Partner.</p></div>
+      <div><h5>Services</h5><ul><li><a href="quick-start.html">Enterprise AI Agentic workflows</a></li><li><a href="quick-start.html#analytics">Analytics</a></li><li><a href="demos.html">AI Agentic demos</a></li></ul></div>
+      <div><h5>Industries</h5><ul><li><a href="healthcare.html">Healthcare</a></li><li><a href="industries.html">Financial Services</a></li></ul></div>
+      <div><h5>Resources</h5><ul><li><a href="case-studies.html">Customers</a></li><li><a href="events.html">Events</a></li><li><a href="blog.html">Blog</a></li><li><a href="newsletter.html">Newsletter</a></li></ul></div>
+      <div><h5>Company</h5><ul><li><a href="about.html">Why Incede</a></li><li><a href="contact.html">Contact</a></li></ul></div>
+    </div>
+    <div class="footer-bottom"><span>© 2026 incede.ai · Certified IBM Partner</span><span><a href="#">Privacy</a> · <a href="#">Terms</a></span></div>
+  </div>
+</footer>
+
+</body>
+</html>

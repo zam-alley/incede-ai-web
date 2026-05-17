@@ -1,0 +1,454 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+<title>Events — webinars, roundtables, and industry conferences | Incede.ai</title>
+<meta name="description" content="Upcoming and past events from Incede.ai — webinars, customer roundtables, partner summits, and industry conferences. Sign up for notifications." />
+<meta name="theme-color" content="#5947BA" />
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="styles.css" />
+<style>
+  .ev-card {
+    background: #fff; border: 1px solid var(--line); border-radius: var(--radius);
+    overflow: hidden;
+    transition: transform .15s, border-color .15s, box-shadow .15s;
+    display: flex; flex-direction: column;
+  }
+  .ev-card:hover { transform: translateY(-2px); border-color: var(--brand-200); box-shadow: var(--shadow); }
+  .ev-thumb {
+    aspect-ratio: 16 / 9;
+    background: linear-gradient(135deg, var(--brand-darker), var(--brand));
+    position: relative; overflow: hidden;
+  }
+  .ev-thumb::before {
+    content: ""; position: absolute; inset: 0;
+    background: radial-gradient(circle at 70% 30%, rgba(255,107,53,0.25), transparent 60%);
+  }
+  .ev-thumb.green { background: linear-gradient(135deg, #134e4a, #0d9488); }
+  .ev-thumb.blue { background: linear-gradient(135deg, #1a3a5f, #0F62FE); }
+  .ev-thumb.orange { background: linear-gradient(135deg, #7c2d12, #FF6B35); }
+  .ev-thumb.slate { background: linear-gradient(135deg, #1f2937, #475569); }
+  .ev-type {
+    position: absolute; top: 14px; left: 14px;
+    background: rgba(255,255,255,0.18); backdrop-filter: blur(8px);
+    color: #fff; font-size: var(--fs-xs); font-weight: 700;
+    padding: 4px 10px; border-radius: 999px;
+    text-transform: uppercase; letter-spacing: 0.08em; z-index: 2;
+  }
+  .ev-date-badge {
+    position: absolute; bottom: 14px; left: 14px;
+    background: #fff; color: var(--brand-dark);
+    padding: 8px 14px; border-radius: 8px;
+    font-weight: 700; font-size: var(--fs-sm);
+    text-align: center; line-height: 1.1; z-index: 2;
+    min-width: 64px;
+  }
+  .ev-date-badge .month { display:block; font-size: var(--fs-xs); text-transform: uppercase; letter-spacing: 0.08em; color: var(--brand); font-weight: 700; }
+  .ev-date-badge .day { display:block; font-size: var(--fs-2xl); line-height: 1; color: var(--ink); }
+  .ev-status {
+    position: absolute; bottom: 14px; right: 14px;
+    background: var(--success); color: #fff;
+    padding: 4px 10px; border-radius: 999px;
+    font-size: var(--fs-xs); font-weight: 700;
+    text-transform: uppercase; letter-spacing: 0.08em; z-index: 2;
+  }
+  .ev-status.past { background: rgba(15,11,34,0.7); }
+  .ev-body { padding: 20px 24px 24px; flex: 1; display:flex; flex-direction: column; }
+  .ev-body h3 { font-size: var(--fs-lg); margin: 0 0 8px; }
+  .ev-meta { font-size: var(--fs-sm); color: var(--ink-4); margin-bottom: 12px; display:flex; flex-wrap: wrap; gap: 12px; }
+  .ev-meta span { display: inline-flex; align-items: center; gap: 4px; }
+  .ev-body p { font-size: var(--fs-sm); color: var(--ink-3); margin: 0 0 16px; flex: 1; }
+  .ev-actions { display: flex; gap: 8px; flex-wrap: wrap; }
+  .ev-actions .btn { padding: 8px 16px; font-size: var(--fs-xs); }
+
+  .feature-event {
+    background: linear-gradient(135deg, var(--brand-darker), var(--brand));
+    color: #fff;
+    border-radius: var(--radius-lg);
+    padding: 48px;
+    display: grid; grid-template-columns: 1.2fr 1fr; gap: 40px;
+    align-items: center;
+    position: relative; overflow: hidden;
+  }
+  .feature-event::before {
+    content: ""; position: absolute; inset: 0;
+    background: radial-gradient(700px 400px at 90% 10%, rgba(255,107,53,0.25), transparent 60%);
+  }
+  .feature-event > * { position: relative; z-index: 1; }
+  .feature-event h2, .feature-event h3, .feature-event p { color: #fff; }
+  .feature-event .ev-pill {
+    display:inline-block; background:rgba(255,255,255,0.18); backdrop-filter: blur(6px);
+    padding: 6px 14px; border-radius: 999px;
+    font-size: var(--fs-xs); font-weight: 700; letter-spacing: 0.08em;
+    text-transform: uppercase; margin-bottom: 16px;
+  }
+  .feature-date {
+    background: rgba(255,255,255,0.95); color: var(--brand-dark);
+    border-radius: var(--radius);
+    padding: 28px; text-align: center;
+    box-shadow: 0 20px 40px rgba(0,0,0,0.18);
+  }
+  .feature-date .fd-month { font-size: var(--fs-sm); font-weight: 700; color: var(--brand); text-transform: uppercase; letter-spacing: 0.12em; }
+  .feature-date .fd-day { font-size: 4rem; font-weight: 700; line-height: 1; color: var(--ink); letter-spacing: -0.04em; margin: 4px 0; }
+  .feature-date .fd-year { font-size: var(--fs-sm); color: var(--ink-4); margin-bottom: 12px; }
+  .feature-date .fd-time { font-size: var(--fs-sm); color: var(--ink-2); font-weight: 600; padding-top: 12px; border-top: 1px solid var(--line); }
+  @media (max-width: 800px) {
+    .feature-event { grid-template-columns: 1fr; padding: 32px; }
+  }
+
+  .filter-row {
+    display: flex; gap: 8px; flex-wrap: wrap;
+    padding: 16px 0; margin: 24px 0 0;
+    border-top: 1px solid var(--line);
+    border-bottom: 1px solid var(--line);
+    align-items: center;
+  }
+  .filter-row .filter-label {
+    font-size: var(--fs-xs); font-weight: 700;
+    text-transform: uppercase; letter-spacing: 0.12em;
+    color: var(--ink-4); margin-right: 8px;
+  }
+  .filter-chip {
+    background: var(--bg);
+    border: 1px solid var(--line);
+    padding: 6px 14px;
+    border-radius: 999px;
+    font-size: var(--fs-sm); font-weight: 500;
+    color: var(--ink-2);
+    cursor: pointer;
+    transition: all .15s;
+    text-decoration: none;
+  }
+  .filter-chip:hover { border-color: var(--brand); color: var(--brand); }
+  .filter-chip.active { background: var(--brand); border-color: var(--brand); color: #fff; }
+</style>
+</head>
+<body>
+<a href="#main" class="skip-link">Skip to main content</a>
+
+<div class="topbar"><div class="container"><span class="topbar-tag">Certified IBM Partner · 10+ years · 500+ projects · 200+ customers</span><span class="topbar-meta"><a href="newsletter.html">Subscribe to The Brief →</a></span></div></div>
+
+<header class="nav">
+  <div class="container">
+    <a href="index.html" class="brand"><span class="brand-mark"></span><span><strong>incede</strong>.ai</span></a>
+    <nav class="nav-links">
+      <a href="quick-start.html">Services</a>
+      <a href="demos.html">AI Agentic demos</a>
+      <a href="case-studies.html">Customers</a>
+      <a href="industries.html">Industries</a>
+      <a href="events.html" class="active">Events</a>
+      <a href="blog.html">Resources</a>
+      <a href="about.html">Why Incede</a>
+      <a href="contact.html" class="btn btn-primary">Let's talk <span class="arr">→</span></a>
+    </nav>
+  </div>
+</header>
+
+<main id="main">
+
+<section class="page-hero">
+  <div class="container container-tight">
+    <div class="crumbs"><a href="index.html">Home</a><span class="sep">/</span>Events</div>
+    <span class="eyebrow">Events</span>
+    <h1>Webinars, roundtables, and industry conferences.</h1>
+    <p class="lede">Where we'll be — and what we've already shared. Customer-facing webinars, industry roundtables, IBM partner events, and conference appearances. Register for upcoming events or watch past recordings.</p>
+  </div>
+</section>
+
+<!-- Filter -->
+<section style="padding-top: 24px; padding-bottom: 0;">
+  <div class="container">
+    <div class="filter-row">
+      <span class="filter-label">Filter</span>
+      <a class="filter-chip active" href="#upcoming">All</a>
+      <a class="filter-chip" href="#upcoming">Upcoming</a>
+      <a class="filter-chip" href="#past">Past</a>
+      <a class="filter-chip" href="#upcoming">Webinar</a>
+      <a class="filter-chip" href="#upcoming">In-person</a>
+      <a class="filter-chip" href="#upcoming">Roundtable</a>
+      <a class="filter-chip" href="#upcoming">Conference</a>
+    </div>
+  </div>
+</section>
+
+<!-- Featured upcoming -->
+<section id="upcoming" style="padding-top: 40px;">
+  <div class="container">
+    <span class="eyebrow">Featured · upcoming</span>
+    <h2 style="margin-top: 8px; margin-bottom: 24px;">Where we'll be next.</h2>
+
+    <div class="feature-event">
+      <div>
+        <span class="ev-pill">Conference · In-person</span>
+        <h2 style="font-size: clamp(1.75rem, 3vw, 2.25rem); margin-bottom: 12px;">Visit Incede at IBM Think 2026 — Boston</h2>
+        <p style="opacity: 0.92; font-size: var(--fs-lg); margin-bottom: 24px;">Join us at the IBM Think conference. We'll be at the Partner Pavilion talking watsonx Orchestrate agents, AI roadmapping, and how regulated enterprises are putting GenAI into production. Book a 1:1 with our team in advance.</p>
+        <p style="opacity: 0.85; font-size:var(--fs-sm); margin-bottom: 24px;">📍 Boston Convention & Exhibition Center · 415 Summer St · Boston, MA</p>
+        <div style="display:flex; gap:12px; flex-wrap: wrap;">
+          <a class="btn btn-accent btn-lg" href="contact.html">Book a 1:1 at Think →</a>
+          <a class="btn btn-secondary btn-lg" href="https://www.ibm.com/events/think" style="background:rgba(255,255,255,0.12); color:#fff !important; border-color: rgba(255,255,255,0.3);">IBM Think info ↗</a>
+        </div>
+      </div>
+      <div class="feature-date">
+        <div class="fd-month">June</div>
+        <div class="fd-day">8</div>
+        <div class="fd-year">2026 · Mon–Thu</div>
+        <div class="fd-time">June 8–11 · Boston, MA</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Upcoming events grid -->
+<section>
+  <div class="container">
+    <div class="section-head left" style="display:flex; justify-content:space-between; align-items:end; gap:24px;">
+      <div>
+        <span class="eyebrow">Upcoming</span>
+        <h2 class="mb-0">More events on our calendar.</h2>
+      </div>
+      <a class="btn btn-secondary" href="#notify">Get notified →</a>
+    </div>
+
+    <div class="grid-3">
+      <div class="ev-card">
+        <div class="ev-thumb">
+          <span class="ev-type">Webinar</span>
+          <span class="ev-date-badge"><span class="month">Jul</span><span class="day">15</span></span>
+          <span class="ev-status">Registering</span>
+        </div>
+        <div class="ev-body">
+          <h3>watsonx Orchestrate deep dive: multi-agent workflows</h3>
+          <div class="ev-meta"><span>🕐 11:00 AM PT</span><span>· 45 min</span><span>· Free</span></div>
+          <p>How we design and deploy multi-agent workflows on Orchestrate using MCP — with a live walkthrough of a procurement-to-pay agent stack.</p>
+          <div class="ev-actions"><a class="btn btn-primary" href="contact.html">Register</a><a class="btn btn-ghost" href="#">Add to calendar</a></div>
+        </div>
+      </div>
+
+      <div class="ev-card">
+        <div class="ev-thumb green">
+          <span class="ev-type">Roundtable</span>
+          <span class="ev-date-badge"><span class="month">Aug</span><span class="day">06</span></span>
+          <span class="ev-status">By invite</span>
+        </div>
+        <div class="ev-body">
+          <h3>Healthcare AI roundtable: payer & provider patterns</h3>
+          <div class="ev-meta"><span>🕐 10:00 AM PT</span><span>· 90 min</span><span>· Virtual</span></div>
+          <p>A closed-door peer discussion with 10–12 senior leaders across payers and providers on production AI agent patterns under HIPAA.</p>
+          <div class="ev-actions"><a class="btn btn-primary" href="contact.html">Request invite</a></div>
+        </div>
+      </div>
+
+      <div class="ev-card">
+        <div class="ev-thumb orange">
+          <span class="ev-type">Webinar</span>
+          <span class="ev-date-badge"><span class="month">Sep</span><span class="day">17</span></span>
+          <span class="ev-status">Save the date</span>
+        </div>
+        <div class="ev-body">
+          <h3>From pilot to production: an Orchestrate cut-over walkthrough</h3>
+          <div class="ev-meta"><span>🕐 11:00 AM PT</span><span>· 60 min</span><span>· Free</span></div>
+          <p>The week-by-week cut-over playbook we use. Including the audit packet, identity wiring, and the runbook your team owns.</p>
+          <div class="ev-actions"><a class="btn btn-primary" href="contact.html">Save my seat</a><a class="btn btn-ghost" href="#">Add to calendar</a></div>
+        </div>
+      </div>
+
+      <div class="ev-card">
+        <div class="ev-thumb blue">
+          <span class="ev-type">Webinar</span>
+          <span class="ev-date-badge"><span class="month">Oct</span><span class="day">22</span></span>
+          <span class="ev-status">Save the date</span>
+        </div>
+        <div class="ev-body">
+          <h3>Modernizing analytics with IBM Cognos and watsonx BI</h3>
+          <div class="ev-meta"><span>🕐 9:00 AM PT</span><span>· 60 min</span><span>· Free</span></div>
+          <p>For analytics and data leaders: how we modernize legacy Cognos environments and layer AI-powered insight on the data your business already trusts.</p>
+          <div class="ev-actions"><a class="btn btn-primary" href="contact.html">Save my seat</a></div>
+        </div>
+      </div>
+
+      <div class="ev-card">
+        <div class="ev-thumb slate">
+          <span class="ev-type">Roundtable</span>
+          <span class="ev-date-badge"><span class="month">Nov</span><span class="day">12</span></span>
+          <span class="ev-status">By invite</span>
+        </div>
+        <div class="ev-body">
+          <h3>FSI AI governance roundtable</h3>
+          <div class="ev-meta"><span>🕐 8:30 AM PT</span><span>· 2 hr</span><span>· Hybrid · NYC</span></div>
+          <p>An invite-only conversation with senior FSI leaders on model risk, audit trails, and regulator-ready AI deployments.</p>
+          <div class="ev-actions"><a class="btn btn-primary" href="contact.html">Request invite</a></div>
+        </div>
+      </div>
+
+      <div class="ev-card">
+        <div class="ev-thumb">
+          <span class="ev-type">Webinar</span>
+          <span class="ev-date-badge"><span class="month">Dec</span><span class="day">04</span></span>
+          <span class="ev-status">Save the date</span>
+        </div>
+        <div class="ev-body">
+          <h3>Year in review: what worked in IBM AI deployments in 2026</h3>
+          <div class="ev-meta"><span>🕐 11:00 AM PT</span><span>· 45 min</span><span>· Free</span></div>
+          <p>Our year-end retrospective on the patterns that delivered, the assumptions that didn't, and what we'll do differently in 2027.</p>
+          <div class="ev-actions"><a class="btn btn-primary" href="contact.html">Save my seat</a></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Event notifications -->
+<section id="notify">
+  <div class="container container-tight">
+    <div class="newsletter-band">
+      <span class="eyebrow" style="color:#FFD3BF;">Get notified</span>
+      <h2>Never miss an Incede event.</h2>
+      <p>One email when we add a new webinar, roundtable, or conference appearance. Unsubscribe anytime.</p>
+      <form class="newsletter-form" onsubmit="event.preventDefault(); this.querySelector('button').innerText='Subscribed ✓';">
+        <input type="email" required placeholder="you@company.com" aria-label="Email address" />
+        <button class="btn btn-accent" type="submit">Get event alerts</button>
+      </form>
+    </div>
+  </div>
+</section>
+
+<!-- Past events -->
+<section id="past" style="background:var(--bg-alt);">
+  <div class="container">
+    <div class="section-head left">
+      <span class="eyebrow">Past events · recordings</span>
+      <h2 class="mb-0">Catch up on what you missed.</h2>
+      <p class="lede" style="margin-top: 8px;">Recordings, slides, and notes from our past webinars and panel discussions. Most require a free registration to access the recording.</p>
+    </div>
+
+    <div class="grid-3">
+      <div class="ev-card">
+        <div class="ev-thumb">
+          <span class="ev-type">Webinar</span>
+          <span class="ev-date-badge"><span class="month">Apr</span><span class="day">23</span></span>
+          <span class="ev-status past">Recorded</span>
+        </div>
+        <div class="ev-body">
+          <h3>Building production-grade AI agents on watsonx Orchestrate</h3>
+          <div class="ev-meta"><span>🕐 52 min</span><span>· 2026</span></div>
+          <p>The architecture, identity, and governance patterns we ship in every Orchestrate engagement.</p>
+          <div class="ev-actions"><a class="btn btn-primary" href="contact.html">▶ Watch replay</a><a class="btn btn-ghost" href="#">Slides</a></div>
+        </div>
+      </div>
+
+      <div class="ev-card">
+        <div class="ev-thumb green">
+          <span class="ev-type">Panel</span>
+          <span class="ev-date-badge"><span class="month">Mar</span><span class="day">12</span></span>
+          <span class="ev-status past">Recorded</span>
+        </div>
+        <div class="ev-body">
+          <h3>Insurance AI: lessons from regional payers and life insurers</h3>
+          <div class="ev-meta"><span>🕐 1 hr 8 min</span><span>· 2026</span></div>
+          <p>A panel with leaders from the insurance space on what's worked — and what they'd do differently.</p>
+          <div class="ev-actions"><a class="btn btn-primary" href="contact.html">▶ Watch replay</a></div>
+        </div>
+      </div>
+
+      <div class="ev-card">
+        <div class="ev-thumb orange">
+          <span class="ev-type">Workshop</span>
+          <span class="ev-date-badge"><span class="month">Feb</span><span class="day">26</span></span>
+          <span class="ev-status past">Recorded</span>
+        </div>
+        <div class="ev-body">
+          <h3>Hands-on: setting up your first watsonx Orchestrate agent</h3>
+          <div class="ev-meta"><span>🕐 1 hr 45 min</span><span>· 2026</span></div>
+          <p>A practical walkthrough — from tenant setup to first production-grade skill flow. Sample repo included.</p>
+          <div class="ev-actions"><a class="btn btn-primary" href="contact.html">▶ Watch replay</a><a class="btn btn-ghost" href="#">Sample repo</a></div>
+        </div>
+      </div>
+
+      <div class="ev-card">
+        <div class="ev-thumb blue">
+          <span class="ev-type">Webinar</span>
+          <span class="ev-date-badge"><span class="month">Jan</span><span class="day">29</span></span>
+          <span class="ev-status past">Recorded</span>
+        </div>
+        <div class="ev-body">
+          <h3>Modernizing analytics on Cognos + watsonx BI</h3>
+          <div class="ev-meta"><span>🕐 47 min</span><span>· 2026</span></div>
+          <p>How we layer AI-powered insight and anomaly detection on Cognos — without ripping anything up.</p>
+          <div class="ev-actions"><a class="btn btn-primary" href="contact.html">▶ Watch replay</a></div>
+        </div>
+      </div>
+
+      <div class="ev-card">
+        <div class="ev-thumb slate">
+          <span class="ev-type">Conference</span>
+          <span class="ev-date-badge"><span class="month">May</span><span class="day">21</span></span>
+          <span class="ev-status past">Past</span>
+        </div>
+        <div class="ev-body">
+          <h3>IBM Think 2025 — Partner Day recap</h3>
+          <div class="ev-meta"><span>🕐 Highlights</span><span>· 2025</span></div>
+          <p>Highlights from our team's time at IBM Think 2025 — what's shipping next on watsonx, and what we're betting on.</p>
+          <div class="ev-actions"><a class="btn btn-primary" href="blog.html">Read recap</a></div>
+        </div>
+      </div>
+
+      <div class="ev-card">
+        <div class="ev-thumb">
+          <span class="ev-type">Roundtable</span>
+          <span class="ev-date-badge"><span class="month">Nov</span><span class="day">14</span></span>
+          <span class="ev-status past">Recorded</span>
+        </div>
+        <div class="ev-body">
+          <h3>Customer success roundtable: scaling AI past the pilot</h3>
+          <div class="ev-meta"><span>🕐 1 hr 30 min</span><span>· 2025</span></div>
+          <p>Five of our customers shared what got them past the pilot phase — and the operational habits that kept agents running in production.</p>
+          <div class="ev-actions"><a class="btn btn-primary" href="contact.html">▶ Watch replay</a></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="center" style="margin-top: 32px;">
+      <a class="btn btn-secondary" href="contact.html">Request a past event recording →</a>
+    </div>
+  </div>
+</section>
+
+<!-- Suggest a topic -->
+<section>
+  <div class="container container-tight">
+    <div class="card" style="padding: 40px; text-align: center; border-color: var(--brand-200); background: var(--brand-50);">
+      <h2 style="margin-top: 0;">Want us to cover a topic?</h2>
+      <p class="lede">If there's a question your team or industry is wrestling with, we'll put it on the calendar. Drop us a note.</p>
+      <a class="btn btn-primary btn-lg" href="contact.html">Suggest an event topic →</a>
+    </div>
+  </div>
+</section>
+
+</main>
+
+<section class="footer-cta">
+  <div class="container">
+    <h2>Want a private session for your team?</h2>
+    <p>We run customer-specific briefings and architecture reviews on request.</p>
+    <a class="btn btn-accent btn-lg" href="contact.html">Request a private session →</a>
+  </div>
+</section>
+
+<footer class="footer">
+  <div class="container">
+    <div class="footer-grid">
+      <div><div class="brand"><span class="brand-mark"></span><span><strong style="color:#fff;">incede</strong>.ai</span></div><p style="color:#C5BEEA;max-width:280px;">Certified IBM Partner.</p><p style="color:#C5BEEA;font-size:var(--fs-xs);margin-top:16px;">5201 Great America Parkway, Suite #320<br>Santa Clara, CA 95054<br>408-850-4900</p></div>
+      <div><h5>Services</h5><ul><li><a href="quick-start.html">Enterprise AI Agentic workflows</a></li><li><a href="quick-start.html#analytics">Analytics</a></li><li><a href="demos.html">AI Agentic demos</a></li></ul></div>
+      <div><h5>Industries</h5><ul><li><a href="healthcare.html">Healthcare</a></li><li><a href="industries.html">Financial Services</a></li><li><a href="industries.html">Manufacturing</a></li><li><a href="industries.html">Retail</a></li></ul></div>
+      <div><h5>Resources</h5><ul><li><a href="case-studies.html">Customers</a></li><li><a href="events.html">Events</a></li><li><a href="blog.html">Blog</a></li><li><a href="newsletter.html">Newsletter</a></li></ul></div>
+      <div><h5>Company</h5><ul><li><a href="about.html">Why Incede</a></li><li><a href="contact.html">Contact</a></li></ul></div>
+    </div>
+    <div class="footer-bottom"><span>© 2026 incede.ai · Certified IBM Partner</span><span><a href="#">Privacy</a> · <a href="#">Terms</a></span></div>
+  </div>
+</footer>
+
+</body>
+</html>

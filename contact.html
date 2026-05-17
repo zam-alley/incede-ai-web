@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+<title>Contact incede.ai — watsonx Orchestrate specialists</title>
+<meta name="description" content="Three ways to start a conversation with incede.ai — request a Quick Start quote, connect as an IBM seller, or reach our press team." />
+<meta name="theme-color" content="#5947BA" />
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="styles.css" />
+<script>
+function showForm(id) {
+  document.querySelectorAll('.contact-form').forEach(f => f.style.display = 'none');
+  document.getElementById(id).style.display = 'block';
+  document.querySelectorAll('.contact-option').forEach(o => o.classList.remove('active'));
+  document.querySelector('[data-form="'+id+'"]').classList.add('active');
+}
+</script>
+<style>
+  .contact-option {
+    background:#fff; border:1px solid var(--line); border-radius: var(--radius);
+    padding: 24px; cursor: pointer; transition: all .15s;
+    width: 100%; text-align: left; font-family: inherit; color: var(--ink);
+  }
+  .contact-option:hover, .contact-option.active { border-color: var(--brand); box-shadow: var(--shadow); }
+  .contact-option.active { background: var(--brand-50); }
+  .contact-option h4 { margin: 0 0 6px; }
+  .contact-option p { margin: 0; font-size: var(--fs-sm); color: var(--ink-4); }
+  .contact-form { display: none; }
+  .contact-form.show { display: block; }
+</style>
+</head>
+<body>
+<a href="#main" class="skip-link">Skip to main content</a>
+
+<div class="topbar">
+  <div class="container">
+    <span class="topbar-tag">Certified IBM Partner · 10+ years · 500+ projects · 200+ customers</span>
+    <span class="topbar-meta"><a href="newsletter.html">Subscribe to The Brief →</a></span>
+  </div>
+</div>
+
+<header class="nav">
+  <div class="container">
+    <a href="index.html" class="brand"><span class="brand-mark"></span><span><strong>incede</strong>.ai</span></a>
+    <nav class="nav-links">
+      <a href="quick-start.html">Services</a>
+      <a href="demos.html">AI Agentic demos</a>
+      <a href="case-studies.html">Customers</a>
+      <a href="industries.html">Industries</a>
+      <a href="events.html">Events</a>
+      <a href="blog.html">Resources</a>
+      <a href="about.html">Why Incede</a>
+      <a href="contact.html" class="btn btn-primary active">Let's talk <span class="arr">→</span></a>
+    </nav>
+  </div>
+</header>
+
+<main id="main">
+
+<section class="page-hero">
+  <div class="container container-tight">
+    <div class="crumbs"><a href="index.html">Home</a><span class="sep">/</span>Contact</div>
+    <span class="eyebrow">Let's talk</span>
+    <h1>Pick the conversation that fits.</h1>
+    <p class="lede">Three paths — each goes to a different inbox so you reach the right person in one hop.</p>
+  </div>
+</section>
+
+<section style="padding-top: 24px;">
+  <div class="container container-tight">
+    <div class="grid-3" style="margin-bottom: 40px;">
+      <button class="contact-option active" data-form="form-quickstart" onclick="showForm('form-quickstart')">
+        <span class="pill">Most chosen</span>
+        <h4 style="margin-top:8px;">I want a Quick Start quote</h4>
+        <p>Routes to our delivery leads · response within 1 business day.</p>
+      </button>
+      <button class="contact-option" data-form="form-ibm" onclick="showForm('form-ibm')">
+        <h4>I'm an IBM seller / CSM</h4>
+        <p>Routes directly to Jeetu · usually same-day reply.</p>
+      </button>
+      <button class="contact-option" data-form="form-press" onclick="showForm('form-press')">
+        <h4>I'm a journalist or analyst</h4>
+        <p>Routes to the press inbox · 24-hour acknowledgment.</p>
+      </button>
+    </div>
+
+    <!-- Quick Start form -->
+    <div id="form-quickstart" class="contact-form show form-card">
+      <h3 style="margin-top:0;">Request a Quick Start quote</h3>
+      <p class="muted" style="font-size:var(--fs-sm);">A scoping call, no slides. We'll send a tailored quote within 48 hours.</p>
+      <form class="form-stack" onsubmit="event.preventDefault(); this.innerHTML='<p style=&quot;color:var(--success);font-weight:600;&quot;>Thanks — we&#39;ll be in touch within 1 business day.</p>';">
+        <div style="display:grid; grid-template-columns: 1fr 1fr; gap: 12px;">
+          <div><label for="qs-name">Name</label><input id="qs-name" type="text" required /></div>
+          <div><label for="qs-email">Work email</label><input id="qs-email" type="email" required /></div>
+        </div>
+        <div style="display:grid; grid-template-columns: 1fr 1fr; gap: 12px;">
+          <div><label for="qs-co">Company</label><input id="qs-co" type="text" required /></div>
+          <div><label for="qs-role">Role</label><input id="qs-role" type="text" /></div>
+        </div>
+        <div><label for="qs-stage">Where are you today?</label>
+          <select id="qs-stage">
+            <option>Exploring — not yet on Orchestrate</option>
+            <option>Pilot stalled — need to ship</option>
+            <option>In production — need help scaling</option>
+            <option>Other</option>
+          </select>
+        </div>
+        <div><label for="qs-msg">What are you trying to solve?</label><textarea id="qs-msg" rows="4"></textarea></div>
+        <button type="submit" class="btn btn-primary btn-lg">Request a quote →</button>
+        <p class="privacy-note">By submitting, you agree to our <a href="#">privacy notice</a>. We never share or sell your details.</p>
+      </form>
+    </div>
+
+    <!-- IBM seller form -->
+    <div id="form-ibm" class="contact-form form-card">
+      <h3 style="margin-top:0;">For IBM sellers & CSMs</h3>
+      <p class="muted" style="font-size:var(--fs-sm);">We work shoulder-to-shoulder with IBM sellers, CSMs, and Lab Services teams. Tell us about the opportunity.</p>
+      <form class="form-stack" onsubmit="event.preventDefault(); this.innerHTML='<p style=&quot;color:var(--success);font-weight:600;&quot;>Got it — Jeetu will reply directly.</p>';">
+        <div><label for="ib-name">Your name</label><input id="ib-name" type="text" required /></div>
+        <div><label for="ib-email">IBM email</label><input id="ib-email" type="email" required /></div>
+        <div><label for="ib-acct">Customer / account</label><input id="ib-acct" type="text" /></div>
+        <div><label for="ib-msg">Tell us about the opportunity</label><textarea id="ib-msg" rows="4"></textarea></div>
+        <button type="submit" class="btn btn-primary btn-lg">Send to Jeetu →</button>
+      </form>
+    </div>
+
+    <!-- Press form -->
+    <div id="form-press" class="contact-form form-card">
+      <h3 style="margin-top:0;">For journalists & analysts</h3>
+      <p class="muted" style="font-size:var(--fs-sm);">We respond to all inquiries within one business day. Briefings available on request.</p>
+      <form class="form-stack" onsubmit="event.preventDefault(); this.innerHTML='<p style=&quot;color:var(--success);font-weight:600;&quot;>Thanks — we&#39;ll be in touch shortly.</p>';">
+        <div><label for="pr-name">Name</label><input id="pr-name" type="text" required /></div>
+        <div><label for="pr-org">Publication / firm</label><input id="pr-org" type="text" required /></div>
+        <div><label for="pr-email">Email</label><input id="pr-email" type="email" required /></div>
+        <div><label for="pr-msg">What are you working on?</label><textarea id="pr-msg" rows="4"></textarea></div>
+        <button type="submit" class="btn btn-primary btn-lg">Send →</button>
+        <p class="privacy-note">Press kit & headshots available on request.</p>
+      </form>
+    </div>
+
+    <!-- Direct contact -->
+    <div style="margin-top: 40px; padding: 32px; background: var(--bg-alt); border-radius: var(--radius); text-align: center;">
+      <h3 style="margin-top:0;">Prefer email or phone?</h3>
+      <p style="margin: 0 0 8px;"><a href="mailto:info@incede.ai">info@incede.ai</a> · <a href="tel:+14088504900">408-850-4900</a></p>
+      <p class="muted" style="margin: 0; font-size: var(--fs-sm);">5201 Great America Parkway, Suite #320 · Santa Clara, CA 95054</p>
+    </div>
+  </div>
+</section>
+
+</main>
+
+<footer class="footer">
+  <div class="container">
+    <div class="footer-grid">
+      <div><div class="brand"><span class="brand-mark"></span><span><strong style="color:#fff;">incede</strong>.ai</span></div><p style="color:#C5BEEA;max-width:280px;">Certified IBM Partner.</p></div>
+      <div><h5>Services</h5><ul><li><a href="quick-start.html">Enterprise AI Agentic workflows</a></li><li><a href="quick-start.html#analytics">Analytics</a></li><li><a href="demos.html">AI Agentic demos</a></li></ul></div>
+      <div><h5>Industries</h5><ul><li><a href="healthcare.html">Healthcare</a></li><li><a href="industries.html">Financial Services</a></li></ul></div>
+      <div><h5>Resources</h5><ul><li><a href="case-studies.html">Customers</a></li><li><a href="events.html">Events</a></li><li><a href="blog.html">Blog</a></li><li><a href="newsletter.html">Newsletter</a></li></ul></div>
+      <div><h5>Company</h5><ul><li><a href="about.html">Why Incede</a></li><li><a href="contact.html">Contact</a></li></ul></div>
+    </div>
+    <div class="footer-bottom"><span>© 2026 incede.ai</span><span><a href="#">Privacy</a> · <a href="#">Terms</a></span></div>
+  </div>
+</footer>
+
+</body>
+</html>

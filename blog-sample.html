@@ -1,0 +1,232 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+<title>The watsonx Orchestrate reference architecture we ship in week 1 | incede.ai</title>
+<meta name="description" content="The exact diagram, integration list, and identity pattern we hand the customer's security team on day one of every Orchestrate Quick Start." />
+<meta name="theme-color" content="#5947BA" />
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="styles.css" />
+<style>
+  .post-layout { display: grid; grid-template-columns: 240px 1fr; gap: 56px; }
+  @media (max-width: 900px) { .post-layout { grid-template-columns: 1fr; } }
+  .toc { position: sticky; top: 100px; align-self: start; font-size: var(--fs-sm); }
+  .toc h5 { font-size: var(--fs-xs); text-transform: uppercase; letter-spacing: 0.12em; color: var(--ink-4); margin-bottom: 12px; }
+  .toc ul { list-style: none; padding: 0; margin: 0; border-left: 2px solid var(--line); }
+  .toc li { padding: 6px 0 6px 14px; margin-left: -2px; border-left: 2px solid transparent; }
+  .toc li:hover { border-left-color: var(--brand); }
+  .toc a { color: var(--ink-3); }
+  .toc a:hover { color: var(--brand); }
+</style>
+</head>
+<body>
+<a href="#main" class="skip-link">Skip to main content</a>
+
+<div class="topbar">
+  <div class="container">
+    <span class="topbar-tag">Certified IBM Partner · 10+ years · 500+ projects · 200+ customers</span>
+    <span class="topbar-meta"><a href="newsletter.html">Subscribe to The Brief →</a></span>
+  </div>
+</div>
+
+<header class="nav">
+  <div class="container">
+    <a href="index.html" class="brand"><span class="brand-mark"></span><span><strong>incede</strong>.ai</span></a>
+    <nav class="nav-links">
+      <a href="quick-start.html">Services</a>
+      <a href="demos.html">AI Agentic demos</a>
+      <a href="case-studies.html">Customers</a>
+      <a href="industries.html">Industries</a>
+      <a href="events.html">Events</a>
+      <a href="blog.html" class="active">Resources</a>
+      <a href="about.html">Why Incede</a>
+      <a href="contact.html" class="btn btn-primary">Let's talk <span class="arr">→</span></a>
+    </nav>
+  </div>
+</header>
+
+<main id="main">
+
+<section class="page-hero">
+  <div class="container container-tight">
+    <div class="crumbs">
+      <a href="index.html">Home</a><span class="sep">/</span>
+      <a href="blog.html">Blog</a><span class="sep">/</span>
+      <a href="blog.html">Architecture</a><span class="sep">/</span>
+      Reference architecture
+    </div>
+    <span class="pill">Architecture</span>
+    <h1 style="margin-top: 16px;">The watsonx Orchestrate reference architecture we ship in week 1.</h1>
+    <p class="lede">The exact diagram, integration list, and identity pattern we hand the customer's security team on day one of every Orchestrate Quick Start.</p>
+    <div class="article-meta">
+      <div class="author-photo">JS</div>
+      <div>
+        <div style="font-weight:600;">Jeetu Sharma</div>
+        <div class="muted" style="font-size: var(--fs-xs);">Principal · incede.ai · published May 8, 2026 · 8 min read</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section style="padding-top: 0;">
+  <div class="container container-tight">
+    <div class="post-layout">
+      <aside class="toc" aria-label="Table of contents">
+        <h5>On this page</h5>
+        <ul>
+          <li><a href="#why">Why we ship a reference on day 1</a></li>
+          <li><a href="#diagram">The diagram</a></li>
+          <li><a href="#identity">Identity & SSO</a></li>
+          <li><a href="#integration">Integration boundary</a></li>
+          <li><a href="#governance">Governance plane</a></li>
+          <li><a href="#observability">Observability</a></li>
+          <li><a href="#what-not">What we deliberately leave out</a></li>
+        </ul>
+      </aside>
+      <div class="article-body">
+
+        <h2 id="why">Why we ship a reference on day 1</h2>
+        <p>Every Orchestrate engagement we've run has hit the same pivot moment around day 4: the customer's security or platform team asks for a diagram. If you don't have one ready, you lose a week. If your diagram is generic, you lose two weeks while it gets reshaped to look like the customer's real stack.</p>
+        <p>So we ship a real diagram on day 1. Not a vendor slide. A working, reviewable architecture that names the systems the customer actually runs.</p>
+
+        <h2 id="diagram">The diagram</h2>
+        <p>Here's the version we ship into healthcare engagements — the one in our <a href="healthcare.html">Healthcare industry page</a> for context. The same skeleton, with different boundary systems, holds for FSI, manufacturing, and retail.</p>
+
+        <div style="background: var(--bg-alt); border-radius: 12px; padding: 24px; margin: 16px 0;">
+          <svg viewBox="0 0 900 320" role="img" aria-label="Reference architecture: identity, agent control plane, governance plane, and integration boundary." style="width:100%; height:auto;">
+            <defs><linearGradient id="g2" x1="0" x2="1"><stop offset="0" stop-color="#5947BA"/><stop offset="1" stop-color="#4938A0"/></linearGradient></defs>
+            <rect x="40" y="130" width="140" height="60" rx="10" fill="#F4F2FB" stroke="#C5BEEA"/>
+            <text x="110" y="165" text-anchor="middle" font-size="14" fill="#382B82" font-weight="600">User / channel</text>
+            <rect x="220" y="40" width="140" height="60" rx="10" fill="#fff" stroke="#5947BA" stroke-width="2"/>
+            <text x="290" y="65" text-anchor="middle" font-size="12" fill="#5947BA" font-weight="700">IdP / SSO</text>
+            <text x="290" y="83" text-anchor="middle" font-size="11" fill="#6B7280">OIDC · SAML · MFA</text>
+            <rect x="220" y="130" width="440" height="60" rx="10" fill="url(#g2)"/>
+            <text x="440" y="157" text-anchor="middle" font-size="14" fill="#fff" font-weight="700">watsonx Orchestrate · Agent control plane</text>
+            <text x="440" y="175" text-anchor="middle" font-size="11" fill="#E6E2F5">Skill flows · Tool use · Multi-LLM routing</text>
+            <rect x="220" y="220" width="440" height="60" rx="10" fill="#fff" stroke="#FF6B35" stroke-width="2"/>
+            <text x="440" y="247" text-anchor="middle" font-size="13" fill="#0F1419" font-weight="700">watsonx.governance · Audit · Policy · Lineage</text>
+            <rect x="700" y="40" width="160" height="60" rx="10" fill="#fff" stroke="#0F62FE"/>
+            <text x="780" y="75" text-anchor="middle" font-size="12" fill="#0F62FE" font-weight="700">Systems of record</text>
+            <rect x="700" y="130" width="160" height="60" rx="10" fill="#fff" stroke="#0F62FE"/>
+            <text x="780" y="155" text-anchor="middle" font-size="12" fill="#0F62FE" font-weight="700">Data warehouse</text>
+            <text x="780" y="173" text-anchor="middle" font-size="11" fill="#6B7280">Snowflake / Db2</text>
+            <rect x="700" y="220" width="160" height="60" rx="10" fill="#fff" stroke="#0F62FE"/>
+            <text x="780" y="245" text-anchor="middle" font-size="12" fill="#0F62FE" font-weight="700">Observability</text>
+            <text x="780" y="263" text-anchor="middle" font-size="11" fill="#6B7280">Logs · traces · metrics</text>
+            <line x1="180" y1="160" x2="220" y2="160" stroke="#9CA3AF" stroke-width="2"/>
+            <line x1="290" y1="100" x2="290" y2="130" stroke="#9CA3AF" stroke-width="2"/>
+            <line x1="660" y1="160" x2="700" y2="70" stroke="#9CA3AF" stroke-width="2"/>
+            <line x1="660" y1="160" x2="700" y2="160" stroke="#9CA3AF" stroke-width="2"/>
+            <line x1="660" y1="160" x2="700" y2="250" stroke="#9CA3AF" stroke-width="2"/>
+            <line x1="440" y1="190" x2="440" y2="220" stroke="#FF6B35" stroke-width="2" stroke-dasharray="4 4"/>
+          </svg>
+        </div>
+
+        <h2 id="identity">Identity & SSO</h2>
+        <p>Identity is the boring part that most pilots get wrong. The agent should never carry its own credentials to a system of record. The user's identity flows through Orchestrate, into the tool call, and into the audit log — which means OIDC or SAML federation to the customer's IdP, plus role mapping that lines up with the agent's scope.</p>
+        <p>We use Okta, Entra ID, and IBM Verify the most. Whatever your IdP, we wire it in week 2.</p>
+
+        <h2 id="integration">Integration boundary</h2>
+        <p>The right-hand column of the diagram changes by industry. In healthcare it's Epic, claims, and a PHI vault. In FSI it's a core banking system, complaint queues, and the data warehouse. In manufacturing it's SAP, MES, and supplier portals. The control plane and governance plane don't change — and that's the point: most of the durable architectural decisions live to the left of that boundary, where the customer has the least muscle memory.</p>
+
+        <blockquote>The control plane and governance plane don't change. That's the point.</blockquote>
+
+        <h2 id="governance">Governance plane</h2>
+        <p>watsonx.governance is the under-talked-about piece of the platform. It's what gives audit, internal risk, and compliance teams something tangible to review — and it's the difference between an agent that ships and an agent that lives in a pilot tenant for six months.</p>
+
+        <h2 id="observability">Observability</h2>
+        <p>Every Orchestrate engagement we run wires traces and metrics into the customer's existing observability stack — Datadog, Splunk, IBM Instana, whatever they already have on-call. We don't ask teams to learn a new pane of glass for the agents.</p>
+
+        <h2 id="what-not">What we deliberately leave out</h2>
+        <p>You'll notice the diagram doesn't include a vector store as a first-class component. That's deliberate. In our experience, the durable governance battle isn't won at the embedding layer; it's won in the control plane. Vector stores show up later, behind a tool boundary, when there's a real retrieval need — not by default.</p>
+        <p>Same with model fine-tuning. The right time to talk about fine-tuning is after you've shipped agents on baseline models and you have evidence the model is the bottleneck. Most of the time it isn't.</p>
+
+        <h2>Want this as a Figma file?</h2>
+        <p>We hand the editable Figma to every Quick Start customer in week 1. If you'd like a copy for your own pre-engagement planning, drop your email and we'll send it.</p>
+        <a class="btn btn-primary btn-lg" href="newsletter.html">Get the Figma →</a>
+      </div>
+    </div>
+
+    <!-- Author bio -->
+    <div style="margin-top: 48px; padding: 32px; background: var(--bg-alt); border-radius: var(--radius);">
+      <div style="display: flex; gap: 16px; align-items: start;">
+        <div class="author-photo" style="width: 56px; height: 56px; font-size: var(--fs-lg);">JS</div>
+        <div>
+          <h4 style="margin: 0 0 4px;">Jeetu Sharma</h4>
+          <p class="muted" style="font-size: var(--fs-sm); margin-bottom: 8px;">incede.ai. Writes The Brief on enterprise IBM AI patterns drawn from real customer engagements.</p>
+          <a class="more" href="#">Follow on LinkedIn →</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Newsletter inline -->
+<section>
+  <div class="container container-tight">
+    <div class="newsletter-band">
+      <h2>One short email, weekly.</h2>
+      <p>The Orchestrate Brief — practical patterns, governance gotchas, real numbers.</p>
+      <form class="newsletter-form" onsubmit="event.preventDefault(); this.querySelector('button').innerText='Subscribed ✓';">
+        <input type="email" required placeholder="you@company.com" aria-label="Email address" />
+        <button class="btn btn-accent" type="submit">Subscribe</button>
+      </form>
+    </div>
+  </div>
+</section>
+
+<!-- Related posts -->
+<section style="background: var(--bg-alt);">
+  <div class="container">
+    <div class="section-head"><h2>Related reading.</h2></div>
+    <div class="grid-3">
+      <a href="blog-sample.html" class="card post-card">
+        <div class="thumb t2"></div>
+        <div class="meta"><span class="cat">Governance</span><span>· 6 min</span></div>
+        <h3>Audit-ready agents: the four artifacts every Orchestrate deployment needs</h3>
+        <p>What audit, security, and model risk will actually ask for. Templates included.</p>
+      </a>
+      <a href="blog-sample.html" class="card post-card">
+        <div class="thumb t3"></div>
+        <div class="meta"><span class="cat">Pricing</span><span>· 5 min</span></div>
+        <h3>watsonx Orchestrate pricing, decoded.</h3>
+        <p>What you'll actually pay in year one.</p>
+      </a>
+      <a href="blog-sample.html" class="card post-card">
+        <div class="thumb"></div>
+        <div class="meta"><span class="cat">Identity</span><span>· 4 min</span></div>
+        <h3>Why your agent shouldn't carry its own credentials</h3>
+        <p>The identity pattern that keeps your audit team out of your inbox.</p>
+      </a>
+    </div>
+  </div>
+</section>
+
+</main>
+
+<section class="footer-cta">
+  <div class="container">
+    <h2>Ship Orchestrate to production.</h2>
+    <p>Talk to a specialist who's done this before.</p>
+    <a class="btn btn-accent btn-lg" href="contact.html">Book a call →</a>
+  </div>
+</section>
+
+<footer class="footer">
+  <div class="container">
+    <div class="footer-grid">
+      <div><div class="brand"><span class="brand-mark"></span><span><strong style="color:#fff;">incede</strong>.ai</span></div><p style="color:#C5BEEA;max-width:280px;">Certified IBM Partner.</p></div>
+      <div><h5>Services</h5><ul><li><a href="quick-start.html">Enterprise AI Agentic workflows</a></li><li><a href="quick-start.html#analytics">Analytics</a></li><li><a href="demos.html">AI Agentic demos</a></li></ul></div>
+      <div><h5>Industries</h5><ul><li><a href="healthcare.html">Healthcare</a></li><li><a href="industries.html">Financial Services</a></li></ul></div>
+      <div><h5>Resources</h5><ul><li><a href="case-studies.html">Customers</a></li><li><a href="events.html">Events</a></li><li><a href="blog.html">Blog</a></li><li><a href="newsletter.html">Newsletter</a></li></ul></div>
+      <div><h5>Company</h5><ul><li><a href="about.html">Why Incede</a></li><li><a href="contact.html">Contact</a></li></ul></div>
+    </div>
+    <div class="footer-bottom"><span>© 2026 incede.ai</span><span><a href="#">Privacy</a> · <a href="#">Terms</a></span></div>
+  </div>
+</footer>
+
+</body>
+</html>
